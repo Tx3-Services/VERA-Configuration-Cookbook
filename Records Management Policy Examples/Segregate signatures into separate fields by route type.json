@@ -1,0 +1,126 @@
+{
+    "Records Management Policy":
+    {
+        "Snippet":
+        {
+            "Use Case": "Segregate signatures into separate fields by route type",
+            "Example": "Test set pre-execution approval signatures and post-execution approval signatures are stored in separate fields.",
+            "Comments": "Add a 'Displays Signatures For' property to a field definition to configure that field as the displayed signatures field for one or more route types.  Only displayed signatures can be segregated; all raw signature data will be stored together."
+        },
+        "Record Types": [
+            {
+                "Name": "Test Set",
+                "States": [
+                    {
+                        "Name": "Draft",
+                        "Is Editable": "Yes",
+                        "Field Updates":[
+                            {
+                                "Name": "Pre-Execution Signatures",
+                                "Value": ""
+                            },
+                            {
+                                "Name": "Post-Execution Signatures",
+                                "Value": ""
+                            }
+                        ]
+                    },
+                    {
+                        "Name": "Ready for Execution",
+                        "Is Editable": "Yes",
+                        "Clear Signatures": [
+                            "Post-Execution Approval"
+                        ]
+                    },
+                    {
+                        "Name": "Routing for Pre-Execution Approval",
+                        "Is Editable": "No"
+                    },
+                    {
+                        "Name": "Routing for Post-Execution Approval",
+                        "Is Editable": "No"
+                    },
+                    {
+                        "Name": "Rejected - Pre-Execution",
+                        "Is Editable": "No"
+                    },
+                    {
+                        "Name": "Rejected - Post-Execution",
+                        "Is Editable": "No"
+                    },
+                    {
+                        "Name": "Approved",
+                        "Is Editable": "No"
+                    }
+                ],
+                "Fields": [
+                    {
+                        "Name": "Pre-Execution Signatures",
+                        "Displays Signatures For": ["Pre-Execution Approval"],
+                        "Reset on Copy": "Yes",
+                        "Edit Rules": [
+                            {
+                                "Is Editable": "No",
+                                "Roles": ["Everyone"]
+                            }
+                        ]
+                    },
+                    {
+                        "Name": "Post-Execution Signatures",
+                        "Displays Signatures For": ["Post-Execution Approval"],
+                        "Reset on Copy": "Yes",
+                        "Edit Rules": [
+                            {
+                                "Is Editable": "No",
+                                "Roles": ["Everyone"]
+                            }
+                        ]
+                    },
+                    {
+                        "Name": "Signatures (Raw)",
+                        "Reset on Copy": "Yes",
+                        "Is Visible": "No",
+                        "Edit Rules": [
+                            {
+                                "Is Editable": "No",
+                                "Roles": ["Everyone"]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ],
+        "Routes": [
+            {
+                "Name": "Pre-Execution Approval",
+                "Meaning": "Approval",
+                "State": "Routing for Pre-Execution Approval",
+                "Transitions": [
+                    {
+                        "Trigger": "Route Complete",
+                        "State": "Ready for Execution"
+                    },
+                    {
+                        "Trigger": "Route Rejected",
+                        "State": "Rejected - Pre-Execution"
+                    }
+                ]
+            },
+            {
+                "Name": "Post-Execution Approval",
+                "Meaning": "Approval",
+                "State": "Routing for Post-Execution Approval",
+                "Transitions": [
+                    {
+                        "Trigger": "Route Complete",
+                        "State": "Approved"
+                    },
+                    {
+                        "Trigger": "Route Rejected",
+                        "State": "Rejected - Post-Execution"
+                    }
+                ]
+            }
+        ]
+    }
+}
