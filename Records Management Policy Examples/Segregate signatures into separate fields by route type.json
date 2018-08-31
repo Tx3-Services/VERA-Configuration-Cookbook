@@ -5,11 +5,52 @@
         {
             "Use Case": "Segregate signatures into separate fields by route type",
             "Example": "Test set pre-execution approval signatures and post-execution approval signatures are stored in separate fields.",
-            "Comments": "Add a 'Displays Signatures For' property to a field definition to configure that field as the displayed signatures field for one or more route types.  Only displayed signatures can be segregated; all raw signature data will be stored together."
+            "Comments": [
+                "Add a 'Displays Signatures For' property to a field definition to flag that field as a signatures field.",
+                "The property will contain a list of one or more route types with which the field will be associated.",
+                "Only displayed signatures can be segregated; all raw signature data will be stored together in 'Signatures (Raw)'.",
+                "If no signatures field is declared for a given route type, then the 'Signatures' field will be used by default."
+            ],
+            "Minimum Required VERA Version": "2.4"
         },
         "Record Types": [
             {
                 "Name": "Test Set",
+                "Fields": [
+                    {
+                        "Name": "Pre-Execution Signatures",
+                        "Displays Signatures For": ["Pre-Execution Approval"],
+                        "Reset on Copy": "Yes",
+                        "Edit Rules": [
+                            {
+                                "Is Editable": "No",
+                                "Roles": ["Everyone"]
+                            }
+                        ]
+                    },
+                    {
+                        "Name": "Post-Execution Signatures",
+                        "Displays Signatures For": ["Post-Execution Approval"],
+                        "Reset on Copy": "Yes",
+                        "Edit Rules": [
+                            {
+                                "Is Editable": "No",
+                                "Roles": ["Everyone"]
+                            }
+                        ]
+                    },
+                    {
+                        "Name": "Signatures (Raw)",
+                        "Reset on Copy": "Yes",
+                        "Is Visible": "No",
+                        "Edit Rules": [
+                            {
+                                "Is Editable": "No",
+                                "Roles": ["Everyone"]
+                            }
+                        ]
+                    }
+                ],
                 "States": [
                     {
                         "Name": "Draft",
@@ -51,41 +92,6 @@
                     {
                         "Name": "Approved",
                         "Is Editable": "No"
-                    }
-                ],
-                "Fields": [
-                    {
-                        "Name": "Pre-Execution Signatures",
-                        "Displays Signatures For": ["Pre-Execution Approval"],
-                        "Reset on Copy": "Yes",
-                        "Edit Rules": [
-                            {
-                                "Is Editable": "No",
-                                "Roles": ["Everyone"]
-                            }
-                        ]
-                    },
-                    {
-                        "Name": "Post-Execution Signatures",
-                        "Displays Signatures For": ["Post-Execution Approval"],
-                        "Reset on Copy": "Yes",
-                        "Edit Rules": [
-                            {
-                                "Is Editable": "No",
-                                "Roles": ["Everyone"]
-                            }
-                        ]
-                    },
-                    {
-                        "Name": "Signatures (Raw)",
-                        "Reset on Copy": "Yes",
-                        "Is Visible": "No",
-                        "Edit Rules": [
-                            {
-                                "Is Editable": "No",
-                                "Roles": ["Everyone"]
-                            }
-                        ]
                     }
                 ]
             }
