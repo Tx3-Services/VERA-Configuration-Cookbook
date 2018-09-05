@@ -1,0 +1,223 @@
+{
+    "Records Management Policy":
+    {
+        "Snippet":
+        {
+            "Use Case": "Update related (i.e. linked, child or descendant) records when the main record is updated.",
+            "Example": "A record is transitioned and all descendant records below that match certain criteria are also transitioned.",
+            "Comments": [
+                "Linked Field Actions can be applied during a VERA Action or when a Route Type trigger occurs.",
+                "If applying to a VERA Action, create the action and add the Linked Field Actions element.",
+                "Then define the Target Types. This can either included Record Types directly linked to the record",
+                "or the special keywords Children or Descendants. Children will update only the record directly below the",
+                "selected record. Descendants will update all records below the selected record. Next add any constraints",
+                "that will further filter which linked records will be updated. Finally add a supported action and related elements.",
+                "Below is a list of supported Linked Field Actions:",
+                "Increment: Both types (Segment and Integer) are supported. Constraints can be added to further control which records are updated.",
+                "",
+                "If applying to a Route Type, then add a Route Type and define the appropriate elements. Add a transition and add",
+                "the Linked Field Actions element to it. Then follow the same steps as above to define the action."
+            ],
+            "Minimum Required VERA Version": "2.4"
+        },
+        "Actions": [
+            {
+                "Name": "Update Children Rev Numbers",
+                "Label": "Update Children\r\n Rev Numbers",
+                "Description": "Update Children Rev Numbers",
+                "Execution Rules": [
+                    {
+                        "Is Allowed": "Yes",
+                        "Constraints": [
+                            {
+                                "Type": "Record Type Is One Of",
+                                "Record Types": ["Requirement"]
+                            },
+                            {
+
+                                "Type": "Field Is One Of",
+                                "Name": "Requirement Type",
+                                "Values": ["Document"]
+                            }
+                        ]
+                    }
+                ],
+                "Linked Field Actions": [
+                    {
+                        "Link Target Types": ["Children"],
+                        "Link Target Constraints": [
+                            {
+                                "Type": "Field Is Not One Of",
+                                "Name": "Requirement Type",
+                                "Values": ["Group"]
+                            }
+                        ],
+                        "Increment": {
+                            "Type": "Segment",
+                            "Amount": "1",
+                            "Field": "Revision Number",
+                            "Target Segment": "2"
+                        }
+                    }
+                ]
+            },
+            {
+                "Name": "Update Descendants Rev Numbers",
+                "Label": "Update Descendants\r\n Rev Numbers",
+                "Description": "Update Descendants Rev Numbers",
+                "Execution Rules": [
+                    {
+                        "Is Allowed": "Yes",
+                        "Constraints": [
+                            {
+                                "Type": "Record Type Is One Of",
+                                "Record Types": ["Requirement"]
+                            },
+                            {
+
+                                "Type": "Field Is One Of",
+                                "Name": "Requirement Type",
+                                "Values": ["Document"]
+                            }
+                        ]
+                    }
+                ],
+                "Linked Field Actions": [
+                    {
+                        "Link Target Types": ["Descendants"],
+                        "Link Target Constraints": [
+                            {
+                                "Type": "Field Is Not One Of",
+                                "Name": "Requirement Type",
+                                "Values": ["Group"]
+                            }
+                        ],
+                        "Increment": {
+                            "Type": "Segment",
+                            "Amount": "1",
+                            "Field": "Revision Number",
+                            "Target Segment": "2"
+                        }
+                    }
+                ]
+            },
+            {
+                "Name": "Update Descendants Rev# and Status",
+                "Label": "Update Descendants\r\n Rev# and Status",
+                "Description": "Update Descendants Rev Numbers",
+                "Execution Rules": [
+                    {
+                        "Is Allowed": "Yes",
+                        "Constraints": [
+                            {
+                                "Type": "Record Type Is One Of",
+                                "Record Types": ["Requirement"]
+                            },
+                            {
+
+                                "Type": "Field Is One Of",
+                                "Name": "Requirement Type",
+                                "Values": ["Document"]
+                            }
+                        ]
+                    }
+                ],
+                "Transitions": [
+                    {
+                        "State": "Draft",
+                        "Record Types": ["Requirement"],
+                        "Linked Transitions": [
+                            {
+                                "State": "Draft",
+                                "Link Target Types": ["Descendants"],
+                                "Link Target Constraints": [
+                                    {
+                                        "Type": "Field Is Not One Of",
+                                        "Name": "Requirement Type",
+                                        "Values": ["Group"]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ],
+                "Linked Field Actions": [
+                    {
+                        "Link Target Types": ["Descendants"],
+                        "Link Target Constraints": [
+                            {
+                                "Type": "Field Is Not One Of",
+                                "Name": "Requirement Type",
+                                "Values": ["Group"]
+                            }
+                        ],
+                        "Increment": {
+                            "Type": "Segment",
+                            "Amount": "1",
+                            "Field": "Revision Number",
+                            "Target Segment": "2"
+                        }
+                    }
+                ]
+            }
+        ],
+        "Route Types": [
+            {
+                "Name": "Document Approval",
+                "Meaning": "Approval",
+                "State": "Routing for Approval",
+                "Transitions": [
+                    {
+                        "Trigger": "Route Complete",
+                        "State": "Approved",
+                        "Increment": {
+                            "Type": "Segment",
+                            "Amount": "1",
+                            "Field": "Revision Number",
+                            "Target Segment": "1"
+                        },
+                        "Linked Transitions": [
+                            {
+                                "State": "Approved",
+                                "Link Target Types": ["Descendants"],
+                                "Link Target Constraints": [
+                                    {
+                                        "Type": "Field Is Not One Of",
+                                        "Name": "Requirement Type",
+                                        "Values": ["Group"]
+                                    }
+                                ]
+                            }
+                        ],
+                        "Linked Field Actions": [
+                            {
+                                "Link Target Types": ["Descendants"],
+                                "Link Target Constraints": [
+                                    {
+                                        "Type": "Field Is Not One Of",
+                                        "Name": "Requirement Type",
+                                        "Values": ["Group"]
+                                    }
+                                ],
+                                "Increment": {
+                                    "Type": "Segment",
+                                    "Amount": "1",
+                                    "Field": "Revision Number",
+                                    "Target Segment": "1",
+                                    "Constraints": [
+                                        {
+                                            "Type": "Segment Is Not",
+                                            "Name": "Revision Number",
+                                            "Target Segment": "2",
+                                            "Value": "0"
+                                        }
+                                    ]
+                                }
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+}
