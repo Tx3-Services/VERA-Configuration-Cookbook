@@ -1,0 +1,126 @@
+{
+    "Records Management Policy":
+    {
+        "Snippet":
+        {
+            "Use Case": "Allow Actions Based on Parent or Ancestor Records",
+            "Example": "A transition is only allowed for a sub-record that has an ancestor that is a certain type of requirement (e.g. Document).",
+            "Comments": [
+                "Define an Action, then add one of the Parent or Ancestor Constraints detailed below.",
+                "Then add sub-constraints that the parent or ancestor must match.",
+                "The following constraint types are available:",
+                "Parent Is: This evaluates the direct parent only and is true if the parent matches all of the sub-constraints.",
+                "Ancestor Is: This evaluates all ancestors and is true if any of the ancestors match all of the sub-constraints.",
+                "Parent Is Not: This evaluates the direct parent only and is true if the parent does not match of the sub-constraints.",
+                "Ancestor Is Not: This evaluates all ancestors and is true if none of the ancestors match all of the sub-constraints."
+            ],
+            "Minimum Required VERA Version": "2.4"
+        },
+        "Actions": [
+            {
+                "Name": "Parent Is Document",
+                "Label": "Parent Is Document",
+                "Description": "Direct Parent is a document",
+                "Execution Rules": [
+                    {
+                        "Is Allowed": "Yes",
+                        "Constraints": [
+                            {
+                                "Type": "Record Type Is One Of",
+                                "Record Types": ["Requirement"]
+                            },
+                            {
+                                "Type": "Parent Is",
+                                "Constraints": [
+                                    {
+                                        "Type": "Field Is One Of",
+                                        "Name": "Requirement Type",
+                                        "Values": ["Document"]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "Name": "Parent Is Not Document",
+                "Label": "Parent Is Not Document",
+                "Description": "Direct Parent is not a document",
+                "Execution Rules": [
+                    {
+                        "Is Allowed": "Yes",
+                        "Constraints": [
+                            {
+                                "Type": "Record Type Is One Of",
+                                "Record Types": ["Requirement"]
+                            },
+                            {
+                                "Type": "Parent Is Not",
+                                "Constraints": [
+                                    {
+                                        "Type": "Field Is One Of",
+                                        "Name": "Requirement Type",
+                                        "Values": ["Document"]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "Name": "Ancestor Is Document",
+                "Label": "Ancestor Is Document",
+                "Description": "One ancestor is a document",
+                "Execution Rules": [
+                    {
+                        "Is Allowed": "Yes",
+                        "Constraints": [
+                            {
+                                "Type": "Record Type Is One Of",
+                                "Record Types": ["Requirement"]
+                            },
+                            {
+                                "Type": "Ancestor Is",
+                                "Constraints": [
+                                    {
+                                        "Type": "Field Is One Of",
+                                        "Name": "Requirement Type",
+                                        "Values": ["Document"]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "Name": "Ancestor Is Not Document",
+                "Label": "Ancestor Is Not Document",
+                "Description": "No ancestor is a document",
+                "Execution Rules": [
+                    {
+                        "Is Allowed": "Yes",
+                        "Constraints": [
+                            {
+                                "Type": "Record Type Is One Of",
+                                "Record Types": ["Requirement"]
+                            },
+                            {
+                                "Type": "Ancestor Is Not",
+                                "Constraints": [
+                                    {
+                                        "Type": "Field Is One Of",
+                                        "Name": "Requirement Type",
+                                        "Values": ["Document"]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+}
