@@ -4,7 +4,7 @@
         "Snippet":
         {
             "Use Case": "Segregate signatures into separate fields by route type",
-            "Example": "Test set pre-execution approval signatures and post-execution approval signatures are stored in separate fields.",
+            "Example": "Test set pre-execution approval and post-execution approval signatures are stored in separate fields.",
             "Comments": [
                 "Add a 'Displays Signatures For' property to a field definition to flag that field as a signatures field.",
                 "The property will contain a list of one or more route types with which the field will be associated.",
