@@ -14,6 +14,8 @@
                 "that will further filter which linked records will be updated. Finally add a supported action and related elements.",
                 "Below is a list of supported Linked Field Actions:",
                 "Increment: Both types (Segment and Integer) are supported. Constraints can be added to further control which records are updated.",
+                "Field Updates: Field updates can be applied to linked entities. The value can be set to specific value or copied from a field",
+                "in the parent record.",
                 "",
                 "If applying to a Route Type, then add a Route Type and define the appropriate elements. Add a transition and add",
                 "the Linked Field Actions element to it. Then follow the same steps as above to define the action."
@@ -159,6 +161,45 @@
                         }
                     }
                 ]
+            },
+            {
+                "Name": "Update Descendant Parent Doc #",
+                "Label": "Update Descendant\r\n Parent Doc #",
+                "Description": "Updates the Parent Doc # in all Descendants with the Revision Number from the Parent record.",
+                "Execution Rules": [
+                    {
+                        "Is Allowed": "Yes",
+                        "Constraints": [
+                            {
+                                "Type": "Record Type Is One Of",
+                                "Record Types": ["Requirement"]
+                            },
+                            {
+                                "Type": "Field Is One Of",
+                                "Name": "Requirement Type",
+                                "Values": ["Document"]
+                            }
+                        ]
+                    }
+                ],
+                "Linked Field Actions": [
+                    {
+                        "Link Target Types": ["Descendants"],
+                        "Link Target Constraints": [
+                            {
+                                "Type": "Field Is Not One Of",
+                                "Name": "Requirement Type",
+                                "Values": ["Group"]
+                            }
+                        ],
+                        "Field Updates": [
+                            {
+                                "Name": "Parent Doc #",
+                                "Field": "Revision Number"
+                            }
+                        ]
+                    }
+                ]
             }
         ],
         "Route Types": [
@@ -212,7 +253,20 @@
                                             "Value": "0"
                                         }
                                     ]
-                                }
+                                },
+                                "Field Updates": [
+                                    {
+                                        "Name": "Parent Doc #",
+                                        "Field": "Revision Number",
+                                        "Constraints": [
+                                            {
+                                                "Type": "Field Is Not One Of",
+                                                "Name": "Parent Doc #",
+                                                "Values": ["N/A"]
+                                            }
+                                        ]
+                                    }
+                                ]
                             }
                         ]
                     }
