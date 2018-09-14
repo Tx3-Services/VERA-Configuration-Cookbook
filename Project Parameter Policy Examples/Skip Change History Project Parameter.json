@@ -1,0 +1,23 @@
+{
+    "Project Parameter Policy":
+    {
+        "Snippet":
+        {
+            "Use Case": "Enable a Parameter to control the Run Step Change History feature.",
+            "Example": "A user wants the Change Reason dialog to not be displayed when a step is changed during its initial execution session.",
+            "Comments": [
+                "Add the following parameter to the Project Parameter Policy file.",
+                "Set the parameter to Y in the project."
+            ],
+            "Minimum Required VERA Version": "2.4"
+        },
+        "Parameters": [
+            {
+                "Name": "Skip Step Change History On First Execution",
+                "Default Value": "N",
+                "Valid Values": ["Y", "N"],
+                "Description": "Setting this parameter to Y will cause VERA to not require a Change Reason or update the Change History field when an executed run step is changed within the same session where it was executed initially."
+            }
+        ]
+    }
+}
