@@ -1,0 +1,328 @@
+{
+    "Records Management Policy":
+    {
+        "Snippet":
+        {
+            "Use Case": "Segregate route info into separate fields by route type",
+            "Example": "Test set pre-execution approval and post-execution approval routes are stored in separate fields.",
+            "Comments": [
+                "Add a 'Displays Route Info For' property to a field definition to flag that field as a route info field.",
+                "The property will contain a list of one or more route types with which the field will be associated.",
+                "If no route info field is declared for a given route type, then the 'Approval Route' field will be used by default.",
+                "The 'Start Approval Routes', 'Withdraw Approval Routes', and 'Revise' actions support mappings to route types."
+            ],
+            "Minimum Required VERA Version": "2.4"
+        },
+        "Record Types": [
+            {
+                "Name": "Test Set",
+                "Fields": [
+                    {
+                        "Name": "Pre-Execution Approval Route",
+                        "Displays Route Info For": ["Pre-Execution Approval"],
+                        "Reset on Copy": "Yes",
+                        "Edit Rules": [
+                            {
+                                "Is Editable": "No",
+                                "Roles": ["Everyone"]
+                            }
+                        ]
+                    },
+                    {
+                        "Name": "Post-Execution Approval Route",
+                        "Displays Route Info For": ["Post-Execution Approval"],
+                        "Reset on Copy": "Yes",
+                        "Edit Rules": [
+                            {
+                                "Is Editable": "No",
+                                "Roles": ["Everyone"]
+                            }
+                        ]
+                    }
+                ],
+                "States": [
+                    {
+                        "Name": "Draft",
+                        "Is Editable": "Yes"
+                    },
+                    {
+                        "Name": "Ready for Execution",
+                        "Is Editable": "Yes"
+                    },
+                    {
+                        "Name": "Routing for Pre-Execution Approval",
+                        "Is Editable": "No"
+                    },
+                    {
+                        "Name": "Routing for Post-Execution Approval",
+                        "Is Editable": "No"
+                    },
+                    {
+                        "Name": "Rejected - Pre-Execution",
+                        "Is Editable": "No"
+                    },
+                    {
+                        "Name": "Rejected - Post-Execution",
+                        "Is Editable": "No"
+                    },
+                    {
+                        "Name": "Approved",
+                        "Is Editable": "No"
+                    }
+                ]
+            }
+        ],
+        "Actions": [
+            {
+                "Name": "Start Approval Route(s)",
+                "Label": "Start Pre-Execution\r\nApproval Route(s)",
+                "Description": "Please select the record(s) to route for approval:",
+                "Icon": "Start Route",
+                "Route Types": [
+                    {
+                        "Record Types": ["Test Set"],
+                        "Route Type": "Pre-Execution Approval"
+                    }
+                ],
+                "Execution Rules":[
+                    {
+                        "Is Allowed": "Yes",
+                        "Constraints":[
+                            {
+                                "Type": "State Is",
+                                "State": "Draft"
+                            },
+                            {
+                                "Type": "Field Is One Of",
+                                "Name": "GxP",
+                                "Values": ["Y"]
+                            },                          
+                            {
+                                "Type": "User Is",
+                                "Role": "Editors"
+                            },
+                            {
+                                "Type": "Record Type Is",
+                                "Record Type": "Test Set"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "Name": "Start Approval Route(s)",
+                "Label": "Start Post-Execution\r\nApproval Route(s)",
+                "Description": "Please select the record(s) to route for approval:",
+                "Icon": "Start Route",
+                "Route Types": [
+                    {
+                        "Record Types": ["Test Set"],
+                        "Route Type": "Post-Execution Approval"
+                    }
+                ],
+                "Execution Rules":[
+                    {
+                        "Is Allowed": "Yes",
+                        "Constraints":[
+                            {
+                                "Type": "State Is One Of",
+                                "States": ["Ready for Execution", "Complete"]
+                            }, 
+                            {
+                                "Type": "Field Is One Of",
+                                "Name": "GxP",
+                                "Values": ["Y"]
+                            },
+                            {
+                                "Type": "User Is",
+                                "Role": "Editors"
+                            },
+                            {
+                                "Type": "Child Field Is One Of",        
+                                "Name": "Status",
+                                "Values": ["Passed", "Failed", "N/A", "Blocked", "Not Completed"]
+                            },
+                            {
+                                "Type": "Linked Field Is One Of",
+                                "Allow If Not Linked": "Yes",
+                                "All Linked Records Must Match": "Yes",
+                                "Record Type": "Test Run",                  
+                                "Name": "Status",
+                                "Values": ["Approved", "Cancelled"]
+                            },
+                            {
+                                "Type": "Record Type Is",
+                                "Record Type": "Test Set"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "Name": "Withdraw Approval Route(s)",
+                "Label": "Withdraw Pre-Execution\r\nApproval Route(s)",
+                "Description": "Please select the record(s) to withdraw from approval:",
+                "Icon": "Withdraw",
+                "Route Types": [
+                    {
+                        "Record Types": ["Test Set"],
+                        "Route Type": "Pre-Execution Approval"
+                    }
+                ],
+                "Execution Rules":[
+                    {
+                        "Is Allowed":"Yes",
+                        "Constraints": [
+                            {
+                                "Type": "State Is One Of",
+                                "States":[
+                                    "Routing for Pre-Execution Approval",
+                                    "Rejected - Pre-Execution"
+                                ]
+                            },
+                            {
+                                "Type": "User Is One Of",
+                                "Roles": [
+                                    "Editors",
+                                    "Policy Administrator"
+                                ]
+                            },
+                            {
+                                "Type": "Record Type Is One Of",
+                                "Record Types": ["Test Set"]
+                            }
+                        ]
+                    }
+                ],
+                "Transitions": [
+                    {
+                        "State": "Draft",
+                        "Record Types": ["Test Set"]
+                    }
+                ]
+            },
+            {
+                "Name": "Withdraw Approval Route(s)",
+                "Label": "Withdraw Post-Execution\r\nApproval Route(s)",
+                "Description": "Please select the record(s) to withdraw from approval:",
+                "Icon": "Withdraw",
+                "Route Types": [
+                    {
+                        "Record Types": ["Test Set"],
+                        "Route Type": "Post-Execution Approval"
+                    }
+                ],
+                "Execution Rules":[
+                    {
+                        "Is Allowed":"Yes",
+                        "Constraints":[
+                            {
+                                "Type":"State Is One Of",
+                                "States":[
+                                    "Routing for Post-Execution Approval",
+                                    "Rejected - Post-Execution"
+                                ]
+                            }, 
+                            {
+                                "Type": "User Is One Of",
+                                "Roles":[
+                                    "Editors",
+                                    "Policy Administrator"
+                                ]
+                            },
+                            {
+                                "Type": "Record Type Is One Of",
+                                "Record Types": ["Test Set"]
+                            }
+                        ]
+                    }
+                ],
+                "Transitions": [
+                    { 
+                        "State": "Ready for Execution",
+                        "Record Types": ["Test Set"]
+                    }
+                ]
+            },
+            {
+                "Name": "Revise",
+                "Label": "Revise Test Set(s)",
+                "Description": "Please select the test set(s) to revise:",
+                "Icon":"Revise Test Set",
+                "Route Types": [
+                    {
+                        "Record Types": ["Test Set"],
+                        "Route Type": "Pre-Execution Approval"
+                    }
+                ],
+                "Execution Rules":[
+                    {
+                        "Is Allowed":"Yes",
+                        "Constraints":[
+                            {
+                                "Type":"State Is One Of",
+                                "States": ["Ready for Execution", "Complete"]
+                            },
+                            {
+                                "Type": "User Is",
+                                "Role": "Editors"
+                            },
+                            {
+                                "Type": "Record Type Is",
+                                "Record Type": "Test Set"
+                            }
+                        ]
+                    }
+                ],
+                "Require Reason": 
+                {
+                    "Prompt": "Please enter a reason for revising the selected record(s):",
+                    "Overwrite": "Revision Reason"
+                },
+                "Increment": {
+                    "Type": "Integer",
+                    "Amount": "1",
+                    "Field": "Revision Number"
+                },
+                "Transitions": [
+                    {
+                        "State": "Draft",
+                        "Record Types": ["Test Set"]
+                    }
+                ]
+            }
+        ],
+        "Routes": [
+            {
+                "Name": "Pre-Execution Approval",
+                "Meaning": "Approval",
+                "State": "Routing for Pre-Execution Approval",
+                "Transitions": [
+                    {
+                        "Trigger": "Route Complete",
+                        "State": "Ready for Execution"
+                    },
+                    {
+                        "Trigger": "Route Rejected",
+                        "State": "Rejected - Pre-Execution"
+                    }
+                ]
+            },
+            {
+                "Name": "Post-Execution Approval",
+                "Meaning": "Approval",
+                "State": "Routing for Post-Execution Approval",
+                "Transitions": [
+                    {
+                        "Trigger": "Route Complete",
+                        "State": "Approved"
+                    },
+                    {
+                        "Trigger": "Route Rejected",
+                        "State": "Rejected - Post-Execution"
+                    }
+                ]
+            }
+        ]
+    }
+}

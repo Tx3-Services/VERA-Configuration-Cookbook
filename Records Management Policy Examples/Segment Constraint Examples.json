@@ -1,0 +1,134 @@
+{
+    "Records Management Policy":
+    {
+        "Snippet":
+        {
+            "Use Case": "Allow Actions Based on Segmented Field Values",
+            "Example": "A transition is only allowed when a record has a segmented Revision Number that matches a given criteria (e.g. has a minor version number that is not 0).",
+            "Comments": [
+                "Define an Action, then add one of the Segment Constraints detailed below.",
+                "The Target Segment starts at 1 and moves left to right, divided by periods.",
+                "The following constraint types are available:",
+                "Segment Is: This returns true if the target segment matches the value given.",
+                "Segment Is One Of: This returns true if the target segment matches one of the values given.",
+                "Segment Is Not: This returns true if the target segment does not match the value given.",
+                "Segment Is Not One Of: This returns true if the target segment does not match one of the values given."
+            ],
+            "Minimum Required VERA Version": "2.4"
+        },
+        "Actions": [
+            {
+                "Name": "Segment 2 is 1",
+                "Label": "Segment 2 is 1",
+                "Description": "Segment 2 is 1",
+                "Execution Rules": [
+                    {
+                        "Is Allowed": "Yes",
+                        "Constraints": [
+                            {
+                                "Type": "Record Type Is One Of",
+                                "Record Types": ["Requirement"]
+                            },
+                            {
+                                "Type": "Segment Is",
+                                "Name": "Revision Number",
+                                "Value": "1",
+                                "Target Segment": "2"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "Name": "Segment 2 is not 1",
+                "Label": "Segment 2 is not 1",
+                "Description": "Segment 2 is not 1",
+                "Execution Rules": [
+                    {
+                        "Is Allowed": "Yes",
+                        "Constraints": [
+                            {
+                                "Type": "Record Type Is One Of",
+                                "Record Types": ["Requirement"]
+                            },
+                            {
+                                "Type": "Segment Is Not",
+                                "Name": "Revision Number",
+                                "Value": "1",
+                                "Target Segment": "2"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "Name": "Segment 2 is 0",
+                "Label": "Segment 2 is 0",
+                "Description": "Segment 2 is 0",
+                "Execution Rules": [
+                    {
+                        "Is Allowed": "Yes",
+                        "Constraints": [
+                            {
+                                "Type": "Record Type Is One Of",
+                                "Record Types": ["Requirement"]
+                            },
+                            {
+                                "Type": "Segment Is",
+                                "Name": "Revision Number",
+                                "Value": "0",
+                                "Target Segment": "2"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "Name": "Segment 2 is 0 or 1",
+                "Label": "Segment 2 is 0 or 1",
+                "Description": "Segment 2 is 0 or 1",
+                "Execution Rules": [
+                    {
+                        "Is Allowed": "Yes",
+                        "Constraints": [
+                            {
+                                "Type": "Record Type Is One Of",
+                                "Record Types": ["Requirement"]
+                            },
+                            {
+                                "Type": "Segment Is One Of",
+                                "Name": "Revision Number",
+                                "Values": ["0", "1"],
+                                "Target Segment": "2"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "Name": "Segment 2 is not 0 or 1",
+                "Label": "Segment 2 is not 0 or 1",
+                "Description": "Segment 2 is not 0 or 1",
+                "Icon": "Close",
+                "Execution Rules": [
+                    {
+                        "Is Allowed": "Yes",
+                        "Constraints": [
+                            {
+                                "Type": "Record Type Is One Of",
+                                "Record Types": ["Requirement"]
+                            },
+                            {
+
+                                "Type": "Segment Is Not One Of",
+                                "Name": "Revision Number",
+                                "Values": ["0", "1"],
+                                "Target Segment": "2"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+}
