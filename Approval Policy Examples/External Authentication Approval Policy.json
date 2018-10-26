@@ -1,0 +1,20 @@
+{
+    "Approval Policy":
+    {
+        "Snippet":
+        {
+            "Use Case": "Enable VERA to use an external authentication site to authenticate electronic signature attempts.",
+            "Example": "A user wants VERA to use a SSO provider to authenticate signature attempts.",
+            "Comments": [
+                "Add the Authentication element to the Approval Policy.",
+                "Set the Type element to SSO.",
+                "Set the URL element to the appropriate SSO URL."
+            ],
+            "Minimum Required VERA Version": "2.4"
+        },
+        "Authentication": {
+            "Type": "SSO",
+            "URL": "https://sso.saas.tx3services.com/?IdP={CLIENT_ID}"
+        }
+    }
+}
