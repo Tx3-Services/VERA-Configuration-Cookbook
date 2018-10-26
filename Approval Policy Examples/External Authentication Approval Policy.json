@@ -10,7 +10,7 @@
                 "Set the Type element to SSO.",
                 "Set the URL element to the appropriate SSO URL."
             ],
-            "Minimum Required VERA Version": "2.4"
+            "Minimum Required VERA Version": "2.4.1"
         },
         "Authentication": {
             "Type": "SSO",
