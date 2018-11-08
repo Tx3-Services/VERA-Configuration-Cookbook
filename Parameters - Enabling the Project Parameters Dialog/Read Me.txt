@@ -1,0 +1,25 @@
+The Project Parameters dialog is enabled by adding two actions to the Records Management Policy:
+
+ - "View Project Parameters" - Adding this action to the policy will cause a button to appear at 
+    the bottom of the VERA Action Menu to "View Project Parameters".  This will provide users with 
+    the ability to view the current configuration of parameters defined by the project's Project 
+    Parameter Policy file.  This will be a read-only (non-editable) view of the parameters.
+
+ - "Configure Project Parameters":  Adding this action to the policy will cause a button to appear 
+    at the bottom of the VERA Action Menu to "Configure Project Parameters".  This will provide 
+    users with the ability to both view and edit the configuration of parameters defined by the 
+    project's Project Parameter Policy file.
+
+    NOTE: Users will be able to edit the current value of each parameter, but they will not be able
+    to add or remove parameters from the project.
+
+These actions can be added independently or together, and their availability is controlled 
+independently.  That is, you can configure whether certain user groups will see one of the two 
+actions, both actions, or neither actions.
+
+If these actions are enabled without also including a Project Parameter Policy file, then an empty 
+dialog will be displayed.
+
+If a Project Parameter Policy file is used without enabling these actions, then the parameters in 
+the policy will be used by VERA, but they will not be viewable or editable except by opening the
+policy file directly.

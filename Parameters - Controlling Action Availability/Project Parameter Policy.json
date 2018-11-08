@@ -1,0 +1,18 @@
+{
+    "Project Parameter Policy":
+    {
+        "Snippet":
+        {
+            "Summary": "Create a 'Yes/No' parameter that can be used to control the availability of an action in the Action Menu.",
+            "Minimum Required VERA Version": "2.4"
+        },
+        "Parameters": [
+            {
+                "Name": "Allow Reopening Defects",
+                "Default Value": "No",
+                "Valid Values": ["Yes", "No"],
+                "Description": "Setting this parameter to Yes will allow Defect Managers to reopen a defect after it was closed."
+            }
+        ]
+    }
+}

@@ -1,0 +1,48 @@
+{
+    "Records Management Policy":
+    {
+        "Snippet":
+        {
+            "Summary": "The availability of the 'Reopen Defect' action is based on a project parameter.",
+            "Minimum Required VERA Version": "2.4"
+        },
+        "Actions": [
+            {
+                "Name": "Reopen Defect",
+                "Label": "Reopen Defect",
+                "Description": "Please select the defect to reopen:",
+                "Icon":"Reopen",
+                "Execution Rules":[
+                    {
+                        "Is Allowed":"Yes",
+                        "Constraints":[
+                            {
+                                "Type": "State Is",
+                                "State": "Closed"
+                            },
+                            {
+                                "Type": "User Is",
+                                "Role": "Defect Manager"
+                            },
+                            {
+                                "Type": "Record Type Is One Of",
+                                "Record Types": ["Defect"]
+                            },
+                            {
+                                "Type": "Project Parameter Is Equal",
+                                "Name": "Allow Reopening Defects",
+                                "Value": "Yes"
+                            }
+                        ]
+                    }
+                ],
+                "Transitions": [
+                    {
+                        "State": "Open",
+                        "Record Types": ["Defect"]
+                    }
+                ]
+            }
+        ]
+    }
+}

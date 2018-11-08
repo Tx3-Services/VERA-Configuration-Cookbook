@@ -1,0 +1,32 @@
+{
+    "Project Parameter Policy":
+    {
+        "Snippet":
+        {
+            "Summary": "Configure informational project parameters.",
+            "Minimum Required VERA Version": "2.4"
+        },
+        "Parameters": [
+            {
+                "Name": "Project Classification",
+                "Default Value": "GxP",
+                "Valid Values": ["GxP", "Non-GxP"],
+                "Description": "The project's quality-impact classification (GxP/non-GxP)."
+            },
+            {
+                "Name": "Business Unit",
+                "Valid Values": ["Operations", "RnD", "Manufacturing"],
+                "Description": "The project's owning business unit."
+            },
+            {
+                "Name": "Primary Administrative Contact",
+                "Description": "The email address of the primary point-of-contact for administrative support of this project."
+            },
+            {
+                "Name": "Primary Support Contact",
+                "Default Value": "help_desk@my_company.com",
+                "Description": "The email address of the primary point-of-contact for technical support of this project."
+            }
+        ]
+    }
+}
