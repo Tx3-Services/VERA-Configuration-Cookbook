@@ -1,8 +1,8 @@
 # VERA Configuration Cookbook & Wiki
-Welcome to the VERA Configuration Cookbook repository.  This repository contains references and examples to aid VERA policy administrators in configuring their VERA policy files.
+Welcome to the VERA Configuration Cookbook repository.  This repository and its accompanying [wiki](https://github.com/Tx3-Services/VERA-Configuration-Cookbook/wiki) contain references and examples to aid VERA policy administrators in configuring their VERA policy files.
 
 ---
-_**Note**:  Both the repository and the wiki are under-construction, and Tx3 is actively working to create new content.  However, we welcome requests for specific topics or examples that you would find helpful.  This will help us to prioritize our work.  [Request an update](https://github.com/Tx3-Services/VERA-Configuration-Cookbook#requesting-updates) using the repository's Issues feature.  Thanks!_
+_**Note**:  Both the repository and the [wiki](https://github.com/Tx3-Services/VERA-Configuration-Cookbook/wiki) are under-construction, and Tx3 is actively working to create new content.  However, we welcome requests for specific topics or examples that you would find helpful.  This will help us to prioritize our work.  [Request an update](https://github.com/Tx3-Services/VERA-Configuration-Cookbook#requesting-updates) using the repository's Issues feature.  Thanks!_
 
 ---
 
@@ -18,7 +18,7 @@ _**Note**:  Both the repository and the wiki are under-construction, and Tx3 is 
 ## Overview
 This material is divided in two sections:
 1. **VERA Configuration Cookbook** (*git repository*):  A collection of file snippets that provide examples of various configurations within VERA.
-2. **VERA Configuration Wiki**:  A collection of help pages providing instructions for configuring and using VERA policy files.
+2. **VERA Configuration Wiki**:  A collection of help pages providing instructions for configuring and using VERA policy files.  (Go to the [wiki](https://github.com/Tx3-Services/VERA-Configuration-Cookbook/wiki).)
 
 
 ## VERA Configuration Cookbook
