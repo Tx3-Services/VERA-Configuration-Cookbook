@@ -2,9 +2,18 @@
 Welcome to the VERA Configuration Cookbook repository.  This repository contains references and examples to aid VERA policy administrators in configuring their VERA policy files.
 
 ---
-_**Note**:  Both the repository and the wiki are under-construction, and Tx3 is actively working to create new content.  However, we welcome requests for specific topics or examples that you would find helpful.  This will help us to prioritize our work.  Requests can be submitted using the repository's [Issues](https://github.com/Tx3-Services/VERA-Configuration-Cookbook/issues) feature.  Thanks!_
+_**Note**:  Both the repository and the wiki are under-construction, and Tx3 is actively working to create new content.  However, we welcome requests for specific topics or examples that you would find helpful.  This will help us to prioritize our work.  [Request an update](https://github.com/Tx3-Services/VERA-Configuration-Cookbook#requesting-updates) using the repository's Issues feature.  Thanks!_
 
 ---
+
+## Table of Contents
+1. [Overview](https://github.com/Tx3-Services/VERA-Configuration-Cookbook#overview)
+2. [VERA Configuration Cookbook](https://github.com/Tx3-Services/VERA-Configuration-Cookbook#vera-configuration-cookbook)
+3. [VERA Configuration Wiki](https://github.com/Tx3-Services/VERA-Configuration-Cookbook#vera-configuration-wiki)
+4. [Asking Questions](https://github.com/Tx3-Services/VERA-Configuration-Cookbook#asking-questions)
+5. [Reporting Issues](https://github.com/Tx3-Services/VERA-Configuration-Cookbook#reporting-issues)
+6. [Requesting Updates](https://github.com/Tx3-Services/VERA-Configuration-Cookbook#requesting-updates)
+7. [Contributing Examples](https://github.com/Tx3-Services/VERA-Configuration-Cookbook#contributing-examples)
 
 ## Overview
 This material is divided in two sections:
@@ -27,7 +36,7 @@ Configuration questions can be asked by submitting an [Issue](https://github.com
 
 Before submitting a question, please try searching the existing issues to see if another user has already asked the same question.  If you find that your question has already been asked, we encourage you to comment on the existing question rather than submitting a new one.  This sort of dialog will provide the most benefit to all users.
 
-## Reporting Mistakes
+## Reporting Issues
 If you find a mistake or inaccuracy in any of the examples or help documentation, then please submit an [Issue](https://github.com/Tx3-Services/VERA-Configuration-Cookbook/issues) that is tagged with the `bug` label.
 
 ## Requesting Updates
