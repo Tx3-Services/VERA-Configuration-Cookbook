@@ -1,0 +1,41 @@
+{
+    "Test Execution Policy":
+    {
+        "Snippet":
+        {
+            "Use Case": "Allow Formal Execution of un-Approved Test Cases",
+            "Example": "A Formal Execution is defined for Test Sets with GxP = N that does not check Test Cases",
+            "Comments": [
+                "Add this Execution Type ahead of the general 'Formal Execution' Execution Type to allow Formal Executions",
+                "to be created for non-GxP Test Sets.",
+                "The exclusion of the 'Test Case Rules' element in the Execution Type indicates that Test Cases do not need",
+                "to be checked prior to creating the Run.",
+                "The 'Test Run' record type is the record type used for Formal Executions in the VERA Standard Template."
+            ],
+            "Minimum Required VERA Version": "2.5"
+        },
+        "Execution Types": [
+            {
+                "Name": "Formal Execution - Ignore Test Cases",
+                "Roles": ["Tester"],
+                "Test Run Record Type": "Test Run",
+                "Test Set Rules": [
+                    {
+                        "Is Allowed": "Yes",
+                        "Constraints": [
+                            {
+                                "Type": "State Is",
+                                "State": "Ready for Execution"
+                            },
+                            {
+                                "Type": "Field Is Equal",
+                                "Name": "GxP",
+                                "Value": "N"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+}
