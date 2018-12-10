@@ -1,0 +1,36 @@
+'Version:  1.0.0.0
+
+Sub Rename_Requirement
+    If (NOT CheckReqIDUniqueness) Then
+        Exit Sub
+    End If
+
+    Req_Fields("RQ_REQ_NAME").Value = Req_Fields("Requirement ID").Value & " - " & Req_Fields("Summary").Value
+
+End Sub
+
+Function CheckReqIDUniqueness
+
+  If (Req_Fields("Requirement ID").Value = "") Then
+      MsgBox "The Requirement ID field cannot be blank."
+      CheckReqIDUniqueness = false
+      Exit Function
+  End If
+
+  Dim reqFactory: Set reqFactory = TDConnection.ReqFactory
+  Dim reqFilter: Set reqFilter = reqFactory.Filter
+  Dim reqIDUserFieldName: reqIDUserFieldName = Req_Fields("Requirement ID").FieldName
+  reqFilter.Filter(reqIDUserFieldName) = """" & Req_Fields("Requirement ID").Value & """"
+  If (Req_Fields("RQ_REQ_ID").Value <> "") Then
+    reqFilter.Filter("RQ_REQ_ID") = "NOT " & CStr(Req_Fields("RQ_REQ_ID").Value)
+  End If
+
+  Dim reqList: Set reqList = reqFilter.NewList
+  If (reqList.Count > 0) Then
+      MsgBox "The Requirement ID (" & Req_Fields("Requirement ID").Value & ") is not unique and can be found in Requirement " & reqList.Item(1).ID & " -- " & reqList.Item(1).Name & "."
+      CheckReqIDUniqueness = false
+      Exit Function
+  End If
+
+  CheckReqIDUniqueness = true
+End Function
