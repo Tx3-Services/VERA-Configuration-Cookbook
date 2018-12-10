@@ -1,0 +1,44 @@
+{
+    "Records Management Policy":
+    {
+        "Snippet":
+        {
+            "Summary": "Enable the 'View Project Parameters' and 'Configure Project Parameters' buttons in the Action Menu.",
+            "Minimum Required VERA Version": "2.4"
+        },
+        "Actions": [
+            {
+                "Name": "View Project Parameters",
+                "Label": "View Project Parameters",
+                "Execution Rules": [
+                    {
+                        "Is Allowed": "Yes",
+                        "Description": "Anyone who is not an administrator will have the View Project Parameters button.  Administrators will have the Configure Project Parameters button.",
+                        "Constraints": [
+                            {
+                                "Type": "User Is Not One Of",
+                                "Roles": ["Policy Administrator", "Requirement Administrator", "Test Administrator", "Defect Administrator"]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "Name": "Configure Project Parameters",
+                "Label": "Configure Project Parameters",
+                "Execution Rules": [
+                    {
+                        "Is Allowed": "Yes",
+                        "Description": "Only administrators will have the Configure Project Parameters button.",
+                        "Constraints": [
+                            {
+                                "Type": "User Is One Of",
+                                "Roles": ["Policy Administrator", "Requirement Administrator", "Test Administrator", "Defect Administrator"]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+}

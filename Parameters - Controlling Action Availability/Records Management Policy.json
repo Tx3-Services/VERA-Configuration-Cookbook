@@ -1,0 +1,32 @@
+{
+    "Records Management Policy":
+    {
+        "Snippet":
+        {
+            "Summary": "The editability of the requirement 'Author' field is based on a project parameter.",
+            "Minimum Required VERA Version": "2.4"
+        },
+        "Record Types": [
+            {
+                "Name": "Requirement",
+                "Fields": [
+                    {
+                        "Name": "Author",
+                        "Edit Rules": [
+                            {
+                                "Is Editable": "No",
+                                "Constraints": [
+                                    {
+                                        "Type": "Project Parameter Is Equal",
+                                        "Name": "Allow Editing Req 'Author' Field",
+                                        "Value": "No"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+}
