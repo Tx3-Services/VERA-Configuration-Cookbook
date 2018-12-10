@@ -1,0 +1,33 @@
+{
+   "Records Management Policy":
+   {
+    "Snippet":
+    {
+        "Use Case": "Clear Comments field when a record is approved",
+        "Example": "Clear the Comments field of a Requirement when it enters the Approved state.",
+        "Comments": [
+            "Clearing a field is accomplished through the Field Updates section of a Record Type's State.",
+            "Setting the field to an empty string will clear the field.",
+            "If the clearing is only to be done under certain conditions, a Constraints section can be added",
+            "to the individual Field Update."
+        ],
+        "Minimum Required VERA Version": "2.0"
+    },
+    "Record Types": [
+            {
+                "Name": "Requirement",
+                "States": [
+                    {
+                        "Name": "Approved",
+                        "Field Updates": [
+                            {
+                                "Name": "Comments",
+                                "Value": ""
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+}
