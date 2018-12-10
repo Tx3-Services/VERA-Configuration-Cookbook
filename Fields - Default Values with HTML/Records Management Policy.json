@@ -1,0 +1,33 @@
+{
+    "Records Management Policy":
+    {
+        "Snippet":
+        {
+            "Use Case": "Set default values for fields with HTML formatting",
+            "Example": "Set the default value for the Description field on a Defect ",
+            "Comments": [
+                "Default Values for fields can contain HTML for fields that allow it.",
+                "It is important that the entire value exist on a single line in the file. It cannot span multiple lines. It is easiest to",
+                "view and edit in a text editor that supports word wrap.",
+                "This example was created by the following process:",
+                "* Format the field as desired in ALM",
+                "* Query the DB through SQL Management Studio to get the full value including HTML tags. These tags are not shown in ALM Site Admin.",
+                "* Copy the value to the policy file",
+                "* Consolidate into a single line"
+            ],
+            "Minimum Required VERA Version": "2.0"
+        },
+        "Record Types": [
+            {
+                "Name": "Test Case",
+                "Fields": [
+                    {
+                        "Name": "Description",
+                        "Default Value": 
+"<html><body><div align=\"left\" style=\"min-height: 9pt; \"><font face=\"Arial\"><span dir=\"ltr\" style=\"font-size:8pt;background:#ffff00\"><b>Test Case Description Template:</b></span></font></div><div align=\"left\" style=\"min-height: 9pt; \"></div><div align=\"left\" style=\"min-height: 9pt; \"><font face=\"Arial\" color=\"#339966\"><span dir=\"ltr\" style=\"font-size:8pt\"><b>Part 1:</b></span></font></div><div align=\"left\" style=\"min-height: 9pt; \"><font face=\"Arial\"><span dir=\"ltr\" style=\"font-size:8pt\">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></font></div><ul style=\"margin-top: 0mm; margin-bottom: 0mm; margin-left: 0mm; padding-left: 0pt;list-style-type: disc; \"><li style=\"margin-left: 24pt; margin-right: 0pt; padding-left: 0pt; text-indent: 0pt; font-size: 10pt;  color: #010101;  \"><font face=\"arial\"><span dir=\"ltr\" style=\"font-size:8pt; font-family:arial; color:#010101; font-weight:Normal; font-style:Normal; font-decoration:Normal\">List 1</span></font></li><li style=\"margin-left: 24pt; margin-right: 0pt; padding-left: 0pt; text-indent: 0pt; font-size: 10pt;  color: #010101;  \"><font face=\"arial\"><span dir=\"ltr\" style=\"font-size:8pt; font-family:arial; color:#010101; font-weight:Normal; font-style:Normal; font-decoration:Normal\">List 2</span></font></li></ul><div align=\"left\" style=\"min-height: 9pt; \"></div><div align=\"left\" style=\"min-height: 9pt; \"><font face=\"Arial\" color=\"#0000ff\"><span dir=\"ltr\" style=\"font-size:8pt\"><b>Part 2:</b></span></font></div><div align=\"left\" style=\"min-height: 9pt; \"></div><ul style=\"margin-top: 0mm; margin-bottom: 0mm; margin-left: 0mm; padding-left: 0pt;list-style-type: disc; \"><li style=\"margin-left: 24pt; margin-right: 0pt; padding-left: 0pt; text-indent: 0pt; font-size: 10pt;  color: #010101;  \"><font face=\"arial\"><span dir=\"ltr\" style=\"font-size:8pt; font-family:arial; color:#010101; font-weight:Normal; font-style:Normal; font-decoration:Normal\">List 1</span></font></li><li style=\"margin-left: 24pt; margin-right: 0pt; padding-left: 0pt; text-indent: 0pt; font-size: 10pt;  color: #010101;  \"><font face=\"arial\"><span dir=\"ltr\" style=\"font-size:8pt; font-family:arial; color:#010101; font-weight:Normal; font-style:Normal; font-decoration:Normal\">List 2</span></font></li></ul><div align=\"left\" style=\"min-height: 9pt; \"></div></body></html>"
+                    }
+                ]
+            }
+        ]
+    }
+}
