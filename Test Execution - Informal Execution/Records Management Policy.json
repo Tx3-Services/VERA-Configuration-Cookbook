@@ -1,0 +1,118 @@
+{
+    "Records Management Policy":
+    {
+        "Snippet":
+        {
+            "Use Case": "Define Informal Test Run.",
+            "Example": "Define Informal Test Run that initializes fields differently than the base Test Run.",
+            "Comments": [
+                "This Informal Test Run specifies Test Run as the base type.",
+                "It defines an Informal Test Run as a Test Run that has Draft Run = Y. This allows an Informal Test Run to be",
+                "differentiated from a Formal Test Run in any Record Type constraints.",
+                "It initializes Draft Run, Status, and Attachment History."
+            ],
+            "Minimum Required VERA Version": "2.4"
+        },
+        "Record Types": [
+            {
+                "Name": "Informal Test Run",
+                "Base Record Type": "Test Run",
+                "Definitions": [
+                    {
+                        "Systems": ["HP ALM"],
+                        "Item Types": ["Test Run"],
+                        "Singular Name": "Informal Test Run",
+                        "Plural Name": "Informal Test Runs",
+                        "Aliases": [
+                            {
+                                "Policy Field": "ID",
+                                "System Field": "Run ID"
+                            },
+                            {
+                                "Policy Field": "Name",
+                                "System Field": "Run Name"
+                            },
+                            {
+                                "Policy Field": "[Step]Status",
+                                "System Field": "[Step]Execution Status"
+                            }
+                        ],
+                        "Constraints": [
+                            {
+                                "Type": "Field Is Equal",
+                                "Name": "Draft Run",
+                                "Value": "Y"
+                            }
+                        ],
+                        "Ownership Description": "created",
+                        "Content Originator": "Tester",
+                        "Details": [
+                            {
+                                "Default": "Yes",
+                                "Fields":[
+                                    "ID",
+                                    "Name",
+                                    "Category",
+                                    "GxP",
+                                    "Execution Status",
+                                    "Status"
+                                ]
+                            },
+                            {
+                                "Default": "No",
+                                "Fields":[
+                                    "ID",
+                                    "Name",
+                                    "Category",
+                                    "GxP",
+                                    "Execution Status",
+                                    "Status",
+                                    "Pending Tasks"
+                                ],
+                                "Actions": [
+                                    "Approval Task(s)"
+                                ]
+                            }
+                        ]
+                    }
+                ],
+                "Default Route Template": "Non-GxP Approval: Runs (Default Route Configuration)",
+                "Editors": ["Tester"],
+                "Administrators": ["Test Administrator"],
+                "Fields": [
+                    {
+                        "Name": "Draft Run",
+                        "Is Data": "No",
+                        "Default Value": "Y",
+                        "Edit Rules": [
+                            {
+                                "Is Editable": "No",
+                                "Roles": ["Everyone"]
+                            }
+                        ]
+                    },
+                    {
+                        "Name": "Status",
+                        "Default Value": "Dry Run",
+                        "Edit Rules": [
+                            {
+                                "Is Editable": "No",
+                                "Roles": ["Everyone"]
+                            }
+                        ]
+                    },
+                    {
+                        "Name": "Attachment History",
+                        "Default Value": "This field is not populated for Dry Runs.",
+                        "Edit Rules": [
+                            {
+                                "Is Editable": "No",
+                                "Roles": ["Everyone"]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+}

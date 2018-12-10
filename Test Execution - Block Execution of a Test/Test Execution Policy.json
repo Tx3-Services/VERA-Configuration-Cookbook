@@ -1,0 +1,32 @@
+{
+    "Test Execution Policy":
+    {
+        "Snippet":
+        {
+            "Use Case": "Blocking execution of a Test",
+            "Example": "Define rules and specify a message for Invalid Execution.",
+            "Comments": [
+                "This snippet defines an Invalid Execution as one that is attempted on a Test Set that is neither Dry Run nor Ready for Execution.",
+                "It sets the message to be displayed in the Description."
+            ],
+            "Minimum Required VERA Version": "2.5"
+        },
+        "Execution Types": [
+            {
+                "Name": "Invalid Execution",
+                "Test Set Rules": [
+                    {
+                        "Is Allowed": "No",
+                        "Description": "The selected test set must be set to 'Ready for Execution' or 'Dry Run' before new test runs can be created.",
+                        "Constraints": [
+                            {
+                                "Type": "State Is Not One Of",
+                                "States": ["Dry Run", "Ready for Execution"]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+}

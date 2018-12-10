@@ -1,0 +1,34 @@
+{
+    "Test Execution Policy":
+    {
+        "Snippet":
+        {
+            "Use Case": "Informal Execution",
+            "Example": "Informal Execution generates Informal Test Runs for Test Sets in Dry Run, regardless of Test Case status.",
+            "Comments": [
+                "This snippet defines an Informal Execution as one that is done by Testers when a Test Set in in the Dry Run workflow state.",
+                "It specifies that runs created for this execution type will be of the Informal Test Run record type. This type must be defined",
+                "in the Records Management Policy. See the Records Management Policy snippet included with this example."
+            ],
+            "Minimum Required VERA Version": "2.5"
+        },
+        "Execution Types": [
+            {
+                "Name": "Informal Execution",
+                "Roles": ["Tester"],
+                "Test Run Record Type": "Informal Test Run",
+                "Test Set Rules": [
+                    {
+                        "Is Allowed": "Yes",
+                        "Constraints": [
+                            {
+                                "Type": "State Is",
+                                "State": "Dry Run"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+}

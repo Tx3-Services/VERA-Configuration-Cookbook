@@ -1,0 +1,47 @@
+{
+    "Test Execution Policy":
+    {
+        "Snippet":
+        {
+            "Use Case": "Formal Execution",
+            "Example": "Formal Execution generates Test Runs for Test Sets in Ready for Execution if the Test Cases are Approved.",
+            "Comments": [
+                "This snippet defines a Formal Execution as one Test Set that is Ready for Execution and is executed by a Tester.",
+                "It blocks the running of the Tests if there are any Test Cases that are not Approved with the message stating",
+                "that Test cases must be pre-approved before they can be executed.",
+                "It specifies the Test Run Record Type as Test Run which initializes the Draft Run field to N in the Standard Template."
+            ],
+            "Minimum Required VERA Version": "2.5"
+        },
+        "Execution Types": [
+            {
+                "Name": "Formal Execution",
+                "Roles": ["Tester"],
+                "Test Run Record Type": "Test Run",
+                "Test Set Rules": [
+                    {
+                        "Is Allowed": "Yes",
+                        "Constraints": [
+                            {
+                                "Type": "State Is",
+                                "State": "Ready for Execution"
+                            }
+                        ]
+                    }
+                ],
+                "Test Rules": [
+                    {
+                        "Is Allowed": "No",
+                        "Description": "Test cases must be pre-approved before they can be executed.",
+                        "Constraints": [
+                            {
+                                "Type": "State Is Not",
+                                "State": "Approved"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+}
