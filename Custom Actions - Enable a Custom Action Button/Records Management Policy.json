@@ -1,0 +1,43 @@
+{
+   "Records Management Policy":
+   {
+    "Snippet":
+    {
+        "Use Case": "Enable a Custom Scripted Action Button",
+        "Example": "A custom script that is executed by toolbar button is needed.",
+        "Comments": [
+            "Write the custom script and save as a .TDS file. Attach the file to the root requirement of the project.",
+            "Add a user toolbar button to the appropriate module in the ALM Workflow.",
+            "Add the code snippet below to the Records Management Policy.",
+            "The Action Name should be UserDefinedActions. followed by the name of the function.",
+            "The function name, toolbar button action name and the name in the Records Management Policy must match."
+        ],
+        "Minimum Required VERA Version": "2.0"
+    },
+    "Record Types": [
+            {
+                "Name": "UserDefinedActions.Rename_Requirement",
+                "Execution Rules": [
+                    {
+                        "Is Allowed": "Yes",
+                        "Constraints": [
+                            {
+                                "Type": "Record Type Is",
+                                "Record Type": "Requirement"
+                            },
+                            {
+                                "Type": "User Is One Of",
+                                "Roles": ["Editors"]
+                            },
+                            {
+                                "Type": "Field Is One Of",
+                                "Name": "Status",
+                                "Values": ["Draft"]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+}
