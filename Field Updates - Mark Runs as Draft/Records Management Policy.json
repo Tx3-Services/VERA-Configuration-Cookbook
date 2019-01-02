@@ -1,0 +1,53 @@
+{
+   "Records Management Policy":
+   {
+    "Snippet":
+    {
+        "Use Case": "Mark Inadvertant Runs as Draft",
+        "Example": "Use the Draft Run field to hide the Exection Status of inadvertant runs in the Execution Grid.",
+        "Comments": [
+            "Updating any field is accomplished through the Field Updates element.",
+            "The Field Updates element can be added to any VERA Action.",
+            "The below example will mark any selected Run as Draft, but only if the run is in the",
+            "Draft or Dry Run Statuses and not already marked as Draft.",
+            "Constraints can also be added directly to each Field Update in the Field Updates element."
+        ],
+        "Minimum Required VERA Version": "2.4"
+    },
+    "Actions": [
+        {
+            "Name": "Mark Run as Draft",
+            "Label": "Mark Run(s)\r\nas Draft",
+            "Icon": "Cancel",
+            "Description": "Select the run(s) to mark as draft:",
+            "Execution Rules": [
+                {
+                    "Is Allowed": "Yes",
+                    "Contraints": [
+                        {
+                            "Type": "Record Type Is",
+                            "Record Type": "Test Run"
+                        },
+                        {
+                            "Type": "Field Is One Of",
+                            "Name": "Status",
+                            "Values": ["Draft", "Dry Run"]
+                        },
+                        {
+                            "Type": "Field Is Not One Of",
+                            "Name": "Draft Run",
+                            "Values": ["Y"]
+                        }
+                    ]
+                }
+            ],
+            "Field Updates": [
+                {
+                    "Name": "Draft Run",
+                    "Value": "Y"
+                }
+            ]
+        }
+        ]
+    }
+}
