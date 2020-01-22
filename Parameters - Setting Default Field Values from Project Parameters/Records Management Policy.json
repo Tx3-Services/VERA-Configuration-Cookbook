@@ -1,0 +1,22 @@
+{
+    "Records Management Policy":
+    {
+        "Snippet":
+        {
+            "Summary": "Reference a Project Parameter in the Default Value of a Field by including its name in [[double-square brackets]].",
+            "Minimum Required VERA Version": "2.7"
+        },
+        "Record Types": [
+            {
+                "Name": "Test Case",
+                "Fields": [
+                    {
+                        "Name": "GxP",
+                        "Default Value": "[[GxP - Default]]",
+                        "Is Data": "Yes"
+                    }
+                ]
+            }
+        ]
+    }
+}

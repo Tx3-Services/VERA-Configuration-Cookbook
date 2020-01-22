@@ -1,0 +1,17 @@
+{
+    "Project Parameter Policy": {
+        "Snippet":
+        {
+            "Summary": "Create a project parameter that can be referenced by the Records Management Policy.",
+            "Minimum Required VERA Version": "2.7"
+        },
+        "Parameters": [
+            {
+                "Name": "GxP - Default",
+                "Default Value": "Y",
+                "Valid Values": ["Y", "N"],
+                "Description": "Sets the GxP field to Y or N on entity creation."
+            }
+        ]
+    }
+}
