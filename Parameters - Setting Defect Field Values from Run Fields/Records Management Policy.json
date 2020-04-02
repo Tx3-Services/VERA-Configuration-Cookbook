@@ -1,0 +1,28 @@
+{
+    "Records Management Policy":
+    {
+        "Snippet":
+        {
+            "Summary": "Set Defect field initialization values from Run fields in Manual Runner and Run Details dialog.
+                        The Initialize value overrides the Default Value.",
+            "Minimum Required VERA Version": "2.4.1"
+        },
+        "Record Types": [
+            {
+                "Name": "Defect",
+                "Fields": [
+                    {
+                        "Name": "GxP",
+                        "Default Value": "N",
+                        "Is Data": "Yes",						
+						"Initialize":
+                        {
+                            "Related Entity": "Test Run",
+                            "Field": "GxP"
+                        }
+                    }
+                ]
+            }
+        ]
+    }
+}
