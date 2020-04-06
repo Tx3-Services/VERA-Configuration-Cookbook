@@ -5,7 +5,7 @@
         {
             "Summary": "Set Defect field initialization values from Run fields in Manual Runner and Run Details dialog.
                         The Initialize value overrides the Default Value.",
-            "Minimum Required VERA Version": "2.4.1"
+            "Minimum Required VERA Version": "2.8"
         },
         "Record Types": [
             {
