@@ -1,0 +1,26 @@
+{
+    "Notification Policy":
+    {
+        "Snippet":
+        {
+            "Use Case": "Enable groups to be notified when they are specified instead of a named approver.",
+            "Example": "Send a notification to the entire group when no specific user is selected for an approval task.",
+            "Comments": [
+                "Add the Notify Group element to the Notification Type definition.",
+                "The property will determine if the notification is sent to the group or not.",
+                "Setting the property to Yes will enable the group email. Setting the property to No or if it is missing, will disable the group email."
+            ],
+            "Minimum Required VERA Version": "2.8"
+        },
+        "Notification Types": [
+            {
+                "Name": "Task",
+                "Recipient": "Assignee",
+                "Default Status": "Enabled",
+                "Record Types": ["Risk Requirement", "Requirement", "Test Case", "Defect", "Test Run", "Test Set"],
+                "Delivery Types": ["Email"],
+                "Notify Group": "Yes"
+            }
+        ]
+    }
+}
