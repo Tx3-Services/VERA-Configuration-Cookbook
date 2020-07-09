@@ -20,7 +20,7 @@
                 "Default Status": "Enabled",
                 "Record Types": ["Risk Requirement", "Requirement", "Test Case", "Defect", "Test Run", "Test Set"],
                 "Delivery Types": ["Email"],
-                "Notify Subroup": "Yes"
+                "Notify Subgroup": "Yes"
             }
         ]
     }
