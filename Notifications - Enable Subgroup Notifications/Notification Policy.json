@@ -1,0 +1,27 @@
+{
+    "Notification Policy":
+    {
+        "Snippet":
+        {
+            "Use Case": "Enable notifications to subgroups without enabling notifications to groups.",
+            "Example": "Send a notification to an entire subggroup when the task is assigned to a subgroup.  Do not send a notification when an entire group is assigned.",
+            "Comments": [
+                "Add the 'Notify Subgroup' element to the Notification Type definition.",
+                "The property will determine whether notifications are sent to approval subgroups.",
+                "Setting the property to 'Yes' will enable subgroup notifications. Setting the property to 'No' will disable subgroup notifications.",
+                "If the 'Notify Subgroup' property is not configured, then subgroup notifications will follow the configuration for group notifications."
+            ],
+            "Minimum Required VERA Version": "2.9"
+        },
+        "Notification Types": [
+            {
+                "Name": "Task",
+                "Recipient": "Assignee",
+                "Default Status": "Enabled",
+                "Record Types": ["Risk Requirement", "Requirement", "Test Case", "Defect", "Test Run", "Test Set"],
+                "Delivery Types": ["Email"],
+                "Notify Subgroup": "Yes"
+            }
+        ]
+    }
+}
