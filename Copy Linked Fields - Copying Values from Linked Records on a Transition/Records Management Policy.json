@@ -1,0 +1,45 @@
+{
+    "Records Management Policy":
+    {
+        "Snippet":
+        {
+            "Use Case": "Create a consolidated list of values from one or more linked records when a target record is transitioned.",
+            "Example": "A test case is routed for approval, and VERA creates a consolided list of business workstreams from all covered requirements.",
+            "Comments": [
+                "Copy Linked Fields can be applied during any VERA Action by adding it to the action's configuration.",
+                "Copy Linked Fields supports copying from multiple record types.",
+				"Copy Linked Fields supports copying from multiple fields of a linked record.",
+				"Copy Linked Fields only supports copying to a single target field on the target record.",
+				"Copy Linked Fields uses comma as the default delimiter. An alternate delimiter can be configured.",
+				"Copy Linked Fields optionally supports sorting the consolidated list in ascending or descending order (case-insensitive).  The default configuration is no sorting.",
+				"Copy Linked Fields optionally supports removing duplicate values (case-insensitive) from the consolidated list using the Distinct property."
+            ],
+            "Minimum Required VERA Version": "2.10"
+        },
+        "Actions": [
+            {
+                "Name": "Start Approval Route(s)",
+                "Label": "Start Approval Route(s)",
+                "Description": "Please select the record(s) to route for approval:",
+                "Execution Rules": ["..."],                
+				"Copy Linked Fields": [
+					{
+						"Linked Record Types": ["Requirement" , "Risk Requirement"],
+						"Linked Fields": ["Workstreams"],
+						"Record Types": ["Test Case"],
+						"Field": "Workstreams",
+						"Delimiter": ";",
+						"Sort": "Ascending",
+						"Distinct": "Yes"
+					}
+				],
+                "Transitions": [
+                    {
+                        "State": "Routing for Approval",
+                        "Record Types": ["Test Case", "Requirement", "Defect", "Risk Requirement"]
+                    }
+                ]
+            }
+        ]
+    }
+}
