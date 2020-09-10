@@ -1,0 +1,43 @@
+{
+    "Records Management Policy":
+    {
+        "Snippet":
+        {
+            "Use Case": "Block passing or failing step based on step attachments",
+            "Example": "Block setting the [Step]Execution Status to Passed or Failed if Evidence Required = Y and the step does not have attachments.",
+            "Comments": [
+                "Add Update Rules to the [Step]Execution Status Field",
+                "Use Constraint Type: Item Does Not Have Attachments to check for attachments"
+            ],
+            "Minimum Required VERA Version": "2.10"
+        },
+        "Record Types": [
+            {
+                "Name": "Test Run",
+                "Fields": [
+                    {
+                        "Name": "[Step]Execution Status",
+                        "Is Data": "Yes",
+                        "Update Rules": [
+                            {
+                                "Is Allowed": "No",
+                                "Description": "Attached evidence is required in order to Pass or Fail this step.",
+                                "Values": [ "Passed", "Failed" ],
+                                "Constraints": [
+                                    {
+                                        "Type": "Field Is Equal",
+                                        "Name": "[Step]Evidence Required",
+                                        "Value": "Y"
+                                    },
+                                    {
+                                        "Type": "Item Does Not Have Attachments"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+}
