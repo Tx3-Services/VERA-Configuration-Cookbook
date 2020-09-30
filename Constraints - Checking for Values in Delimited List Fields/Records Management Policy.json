@@ -1,0 +1,39 @@
+{
+    "Records Management Policy":
+    {
+        "Snippet":
+        {
+            "Use Case": "Allow Actions Based on Values Present In Delimited List Fields",
+            "Example": "An Action can only be executed if a List Field contains certain entries",
+            "Comments": [
+                "Define an Action, then add one of the List Field Constraints detailed below.",
+                "The Values contains the entries to look for in the field",
+                "The Delimiter contains the delimiter to use. Default is comma(,)",
+                "The Ignore Case tells whether the check should ignore case. Default is Y"
+                "The following constraint types are available:",
+                "List Field Contains Any Of: This returns true if the specified field includes one of the listed entries."
+            ],
+            "Minimum Required VERA Version": "2.10"
+        },
+        "Actions": [
+            {
+                "Name": "My Action",
+                "Label": "My Action",
+                "Description": "My Field must contain Value 1 or Value 2",
+                "Execution Rules": [
+                    {
+                        "Is Allowed": "Yes",
+                        "Constraints": [
+                            {
+                                "Type": "List Field Contains Any Of",
+                                "Name": "My Field",
+                                "Values": ["Value 1", "Value 2"],
+                                "Delimiter": ";"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+}
