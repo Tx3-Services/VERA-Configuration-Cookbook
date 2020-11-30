@@ -1,0 +1,36 @@
+{
+    "Records Management Policy":
+    {
+        "Snippet":
+        {
+            "Summary": "Add custom date time formats for Signature Verification. In addition to the standard culture-based date time formats
+                        checked by default, provide a list of Date Time Formats to be checked. Formats are specified according to the standard as
+                        specified at https://docs.microsoft.com/en-us/dotnet/standard/base-types/custom-date-and-time-format-strings",
+            "Minimum Required VERA Version": "2.11"
+        },
+        "Actions": [
+            {
+                "Name": "Verify Signatures",
+                "Label": "Verify Signatures",
+                "Description": "Verifies electronic signatures in the project/repository.",
+                "Options": {
+                    "Date Time Formats": [
+                        "MM/dd/yy hh:mm:ss t",
+                        "dd/MM/yy hh:mm:ss t"
+                    ]
+                },
+                "Execution Rules": [
+                    {
+                        "Is Allowed": "Yes",
+                        "Constraints": [
+                            {
+                                "Type": "User Is One Of",
+                                "Roles": [ "Policy Administrator", "Requirement Administrator", "Test Administrator", "Defect Administrator" ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+}
