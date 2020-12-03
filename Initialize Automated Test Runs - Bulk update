@@ -20,7 +20,7 @@
             "Minimum Required VERA Version": "2.10"
         },
         "Actions": [
-            {
+           {
                 "Name": "Initialize Test Run(s)",
                 "Label": "Initialize Test Run(s)",
                 "Description": "Please select the record(s) to initialize:",
@@ -74,4 +74,3 @@
                     }
                 ]
             }
-}
