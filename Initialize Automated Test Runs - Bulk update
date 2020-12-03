@@ -44,29 +44,29 @@
                         ]
                     }
                 ],
-				"Copy Linked Fields": [
-					{
-						"Linked Record Types": ["Test Case"],
-						"Linked Fields": ["Category"],
-						"Record Types": ["Test Run"],
-						"Field": "Category",
-						"Delimeter": ""
-					},
-					{
-						"Linked Record Types": ["Test Case"],
-						"Linked Fields": ["GxP"],
-						"Record Types": ["Test Run"],
-						"Field": "GxP",
-						"Delimeter": ""
-					},
-					{
-						"Linked Record Types": ["Test Case"],
-						"Linked Fields": ["Revision Number"],
-						"Record Types": ["Test Run"],
-						"Field": "Test: Revision Number",
-						"Delimeter": ""
-					}
-				],
+                "Copy Linked Fields": [
+                    {
+                        "Linked Record Types": ["Test Case"],
+                        "Linked Fields": ["Test Category"],
+                        "Record Types": ["Test Run"],
+                        "Field": "Test Category",
+                        "Delimeter": ""
+                    },
+                    {
+                        "Linked Record Types": ["Test Case"],
+                        "Linked Fields": ["GxP"],
+                        "Record Types": ["Test Run"],
+                        "Field": "GxP",
+                        "Delimeter": ""
+                    },
+                    {
+                        "Linked Record Types": ["Test Case"],
+                        "Linked Fields": ["Revision Number"],
+                        "Record Types": ["Test Run"],
+                        "Field": "Test: Revision Number",
+                        "Delimeter": ""
+                    }
+                ],
                 "Transitions": [
                     {
                         "State": "Draft",
