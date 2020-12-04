@@ -1,0 +1,33 @@
+{
+    "Records Management Policy":
+    {
+        "Snippet":
+        {
+            "Summary": "Disable eApprove Signature Verification by specifying the flag as shown. If the flag is present, eApprove signature
+                       eApprove Signatures will not be verified. This is provided to account for changes ALM makes to the audit log if a server
+                       is moved to a new time zone.",
+            "Minimum Required VERA Version": "2.11"
+        },
+        "Actions": [
+            {
+                "Name": "Verify Signatures",
+                "Label": "Verify Signatures",
+                "Description": "Verifies electronic signatures in the project/repository.",
+                "Options": {
+                    "Disable eApprove Signature Verification": [ "" ]
+                },
+                "Execution Rules": [
+                    {
+                        "Is Allowed": "Yes",
+                        "Constraints": [
+                            {
+                                "Type": "User Is One Of",
+                                "Roles": [ "Policy Administrator", "Requirement Administrator", "Test Administrator", "Defect Administrator" ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+}
