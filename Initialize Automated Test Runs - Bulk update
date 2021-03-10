@@ -1,0 +1,76 @@
+{
+    "Records Management Policy":
+    {
+        "Snippet":
+        {
+            "Use Case": "Initialize test runs status, revision number, GxP and Category values for automated test runs which are imported to MF ALM from external test automation tools",
+            "Example": "Multiple test runs are imported in MF ALM with status, revision number, GxP and Category field as Blank",
+            "Comments": [
+                "New action can be created for editors to bulk transition the imported runs from Status Blank to Draft state.",
+                "Copy Linked Fields is used to copy the correct GxP, Revision Number and Test Category of a test case to test run"
+                Below features are supported by Copy Linked Fields constraint:
+                   "Copy Linked Fields can be applied during any VERA Action by adding it to the action's configuration.",
+                   "Copy Linked Fields supports copying from multiple record types.",
+				           "Copy Linked Fields supports copying from multiple fields of a linked record.",
+				           "Copy Linked Fields only supports copying to a single target field on the target record.",
+				           "Copy Linked Fields uses comma as the default delimiter. An alternate delimiter can be configured.",
+				           "Copy Linked Fields optionally supports sorting the consolidated list in ascending or descending order (case-insensitive).  The default configuration is no sorting.",
+				           "Copy Linked Fields optionally supports removing duplicate values (case-insensitive) from the consolidated list using the Distinct property."
+            ],
+            "Minimum Required VERA Version": "2.10"
+        },
+        "Actions": [
+           {
+                "Name": "Initialize Test Run(s)",
+                "Label": "Initialize Test Run(s)",
+                "Description": "Please select the record(s) to initialize:",
+                "Icon": "Activate",
+                "Execution Rules":[
+                    {
+                        "Is Allowed": "Yes",
+                        "Constraints":[
+                            {
+                                "Type": "Field Is Empty",
+                                "Name": "Test: Revision Number"
+                            },
+                            {
+                                "Type": "User Is",
+                                "Role": "Editors"
+                            },
+                            {
+                                "Type": "Record Type Is One Of",
+                                "Record Types": ["Test Run"]
+                            }
+                        ]
+                    }
+                ],
+                "Copy Linked Fields": [
+                    {
+                        "Linked Record Types": ["Test Case"],
+                        "Linked Fields": ["Test Category"],
+                        "Record Types": ["Test Run"],
+                        "Field": "Test Category",
+                        "Delimeter": ""
+                    },
+                    {
+                        "Linked Record Types": ["Test Case"],
+                        "Linked Fields": ["GxP"],
+                        "Record Types": ["Test Run"],
+                        "Field": "GxP",
+                        "Delimeter": ""
+                    },
+                    {
+                        "Linked Record Types": ["Test Case"],
+                        "Linked Fields": ["Revision Number"],
+                        "Record Types": ["Test Run"],
+                        "Field": "Test: Revision Number",
+                        "Delimeter": ""
+                    }
+                ],
+                "Transitions": [
+                    {
+                        "State": "Draft",
+                        "Record Types": ["Test Run"]
+                    }
+                ]
+            }
