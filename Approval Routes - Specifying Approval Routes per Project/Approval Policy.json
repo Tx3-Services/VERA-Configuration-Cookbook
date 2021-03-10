@@ -1,0 +1,82 @@
+{
+    "Approval Policy":
+    {
+        "Snippet":
+        {
+            "Use Case": "Specify Approval Routes per Project",
+            "Example": [
+                        "Sets Approval Routes according to Project fields:",
+                        "* Jira Issue with Project Key of VS or VERA => Business",
+                        "* qTest Test Case with Project ID of 16 => Technical",
+                        "* qTest Test Run with Project Name of Test-Project => Quality"
+            ],
+            "Comments": [
+                "Include Project fields as Data fields for Records.",
+                "Reference Project fields in Approval Route constraints.",
+                "Available Project fields are: ",
+                "* Project Key (for Jira)",
+                "* Project ID (for qTest)",
+                "* Project Name (for qTest)"
+            ],
+            "Minimum VERA Versions": {
+                "qTest Module": "1.1.3.2"
+            }
+        },
+        "Route Templates": [
+            {
+                "Name": "Jira Project Issue Approval",
+                "Rank": "1",
+                "Record Types": [ "Jira Issue" ],
+                "Constraints": [
+                    {
+                        "Type": "Field Is One Of",
+                        "Name": "Project Key",
+                        "Values": ["VS", "VERA"]
+                    }
+                ],
+                "Levels": [
+                    {
+                        "Name": "Level 1",
+                        "Approvers": [ "Business" ]
+                    }
+                ]
+            },
+            {
+                "Name": "qTest Project ID 16 Test Case Approval",
+                "Rank": "1",
+                "Record Types": [ "qTest Test Case" ],
+                "Constraints": [
+                    {
+                        "Type": "Field Is Equal",
+                        "Name": "Project ID",
+                        "Value": "16"
+                    }
+                ],
+                "Levels": [
+                    {
+                        "Name": "Level 1",
+                        "Approvers": [ "Technical" ]
+                    }
+                ]
+            },
+            {
+                "Name": "qTest Project Name Test-Project Test Run Approval",
+                "Rank": "1",
+                "Record Types": [ "qTest Test Run" ],
+                "Constraints": [
+                    {
+                        "Type": "Field Is Equal",
+                        "Name": "Project Name",
+                        "Value": "Test-Project"
+                    }
+                ],
+                "Levels": [
+                    {
+                        "Name": "Level 1",
+                        "Approvers": [ "Quality" ]
+                    }
+                ]
+            }
+        ]
+    }
+}

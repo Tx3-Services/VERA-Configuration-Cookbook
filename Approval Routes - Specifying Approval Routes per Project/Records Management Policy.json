@@ -1,0 +1,41 @@
+{
+   "Records Management Policy":
+   {
+    "Snippet":
+    {
+        "Use Case": "Specify Approval Routes per Project",
+        "Example": "Clear the Comments field of a Requirement when it enters the Approved state.",
+        "Comments": [
+            "Include Project fields as Data fields for Records.",
+            "Reference Project fields in Approval Route constraints.",
+            "Available Project fields are: ",
+            "* Project Key (for Jira)",
+            "* Project ID (for qTest)",
+            "* Project Name (for qTest)"
+        ],
+        "Minimum VERA Versions": {
+            "qTest Module": "1.1.3.2" 
+        }
+    },
+    "Record Types": [
+            {
+                "Name": "qTest Test Case",
+                "Fields": [
+                    {
+                        "Name": "Project Name",
+                        "Is Data": "Yes"
+                    }
+                ]
+            },
+            {
+                "Name": "Jira Issue",
+                "Fields": [
+                    {
+                        "Name": "Project Key",
+                        "Is Data": "Yes"
+                    }
+                ]
+            }
+        ]
+    }
+}
