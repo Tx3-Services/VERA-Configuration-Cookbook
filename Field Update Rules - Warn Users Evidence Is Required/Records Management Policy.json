@@ -1,0 +1,45 @@
+{
+   "Records Management Policy":
+   {
+    "Snippet":
+    {
+        "Use Case": "Warn Users Before Updating a Field",
+        "Example": "Warn a tester when executing a step that required evidence, but none is attached to the step.",
+        "Comments": [
+            "Field editability is controlled by the Update Rules for a field.",
+            "The below example will present a Yes or No dialog to the user.",
+            "Is Allowed can be set to Yes, No, or Ask.",
+            "The Message element controls the message displayed to the user on the Yes or No dialog.",
+            "The Description element is the error message seen when hitting No to the dialog."
+        ],
+        "Minimum Required VERA Version": "2.12"
+    },
+    "Record Types": [
+            {
+                "Name": "Test Run",
+                "Fields": [
+                    {
+                        "Name": "[Step]Status",
+                        "Is Data": "Yes",
+                        "Update Rules": [
+                            {
+                                "Is Allowed": "Ask",
+                                "Message": "Evidence is Required for this step, but you have not attached any. Do you want to proceed?",
+                                "Description": "Attached evidence is required in order to Pass or Fail this step.",
+                                "Values": [ "Passed", "Failed" ],
+                                "Constraints": [
+                                    {
+                                        "Type": "Field Is Equal",
+                                        "Name": "[Step]Evidence Required",
+                                        "Value": "Y"
+                                        },
+                                    { "Type": "Item Does Not Have Attachments" }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+}
