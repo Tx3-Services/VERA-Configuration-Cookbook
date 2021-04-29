@@ -7,7 +7,7 @@
         "Example": "Allow users to filter records by GxP, Target Release, or Target Cycle when starting an approval route.",
         "Comments": [
             "Add a 'Filterable Fields' element to the action definition.",
-			"This feature supports creating filters for standard 'List' fields, release fields such as 'Target Release', and cycle fields such as 'Target Cycle'.",
+            "This feature supports creating filters for standard 'List' fields, release fields such as 'Target Release', and cycle fields such as 'Target Cycle'.",
             "Open text fields, memo fields, and other special fields such as 'Requirement Type' are not supported.",
             "The configuration will apply to all ALM modules and record types that support the action.",
             "If a field is unrecognized in the given ALM project, module, or entity tree, then it will be ignorned.  No error will display.",
@@ -17,12 +17,12 @@
     },
     "Actions": [
             {
-				"Name": "Start Approval Route(s)",
+                "Name": "Start Approval Route(s)",
                 "Label": "Start Approval Route(s)",
                 "Description": "Please select the record(s) to route for approval:",
                 "Icon": "Start Route",
                 "Filterable Fields": ["GxP", "Target Release", "Target Cycle"],
-				"Execution Rules":["..."]
+                "Execution Rules":["..."]
             }
         ]
     }
