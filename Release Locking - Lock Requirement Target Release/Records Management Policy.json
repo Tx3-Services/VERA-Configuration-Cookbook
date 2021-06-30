@@ -1,0 +1,59 @@
+{
+   "Records Management Policy":
+   {
+    "Snippet":
+    {
+        "Use Case": "Lock the Requirement Scope of a Release",
+        "Example": "The native 'Assign to Release' and 'Assign to Cycle' actions are disabled and replaced by a special VERA action.",
+        "Comments": [
+            "Disable the 'Edit Link' action for requirements to releases.",
+            "To do this in the standard VERA Records Management Policy: ",
+            "  1) delete the rule that allows Requirement Authors, Requirement Managers, and Release Managers to do this.",
+            "  2) add an enhanced error message (description) to the rule that prevents everyone from editing the release link",
+            "Add the special 'Assign to Release(s)' action to the actions list."
+        ],
+        "Minimum Required VERA Version": "2.13"
+    },
+    "Actions": [
+            {
+                "Name": "Edit Link",
+                "Execution Rules": [
+                    {
+                        "Is Allowed": "No",
+                        "Description": "This action is disabled.  Please use the 'Assign to Release(s)' action in the VERA Action Menu instead.",
+                        "Constraints": [
+                            {
+                                "Type": "Record Type Is One Of",
+                                "Record Types": ["Requirement", "Risk Requirement", "Requirement Folder"]
+                            },
+                            {
+                                "Type": "Link Target Is One Of",
+                                "Record Types": ["Release", "Cycle"]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+				"Name": "Assign to Release(s)",
+                "Label": "Assign to Release(s)",
+                "Description": "Please select the record(s) to update:",
+				"Execution Rules": [
+					{
+                        "Is Allowed":"Yes",
+                        "Constraints":[
+                            {
+                                "Type": "User Is One Of",
+                                "Roles":["Editors", "Managers", "Release Manager"]
+                            },
+                            {
+                                "Type": "Record Type Is One Of",
+                                "Record Types": ["Requirement", "Risk Requirement"]
+                            }
+                        ]
+                    }
+				]
+			},
+        ]
+    }
+}
