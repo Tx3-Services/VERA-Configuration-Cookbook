@@ -1,0 +1,68 @@
+{
+   "Records Management Policy":
+   {
+    "Snippet":
+    {
+        "Use Case": "Lock the Testing Scope of a Release",
+        "Example": "The native 'Assign to Cycle' action is disabled and replaced by a special VERA action in ALM Test Lab.",
+        "Comments": [
+            "Disable the 'Edit Link' action for test set folder to cycle.",
+            "To do this in the standard VERA Records Management Policy: ",
+            "  1) delete the rule that allows Release Managers to do this.",
+            "  2) add an enhanced error message (description) to the rule that prevents everyone from editing the cycle link",
+            "Add the special 'Assign to Cycle' action to the actions list.",
+            "Add a constraint to ensure that the currently selected test set folder is not already associated with a locked release."
+        ],
+        "Minimum Required VERA Version": "2.13"
+    },
+    "Actions": [
+            {
+                "Name": "Edit Link",
+                "Execution Rules": [
+                    {
+                        "Is Allowed": "No",
+                        "Description": "This action is disabled.  Please use the 'Assign to Cycle' action in the VERA Action Menu instead.",
+                        "Constraints": [
+                            {
+                                "Type": "Record Type Is",
+                                "Record Type": "Test Set Folder"
+                            },
+                            {
+                                "Type": "Link Target Is",
+                                "Record Type": "Cycle"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "Name": "Assign to Cycle",
+                "Label": "Assign to Cycle",
+                "Description": "Select a cycle to assign to the selected folder. The previously assigned cycle (if any) will be removed, and ALM will automatically propogate the change to all subfolders and test sets.",
+                "Execution Rules": [
+                    {
+                        "Is Allowed":"Yes",
+                        "Constraints":[
+                            {
+                                "Type": "User Is One Of",
+                                "Roles":["Test Set Designer", "Release Manager"]
+                            },
+                            {
+                                "Type": "Record Type Is",
+                                "Record Type": "Test Set Folder"
+                            },
+                            {
+                                "Type": "Linked Field Is Not One Of",
+                                "Allow If Not Linked": "Yes",
+                                "All Linked Records Must Match": "Yes",
+                                "Record Type": "Release",
+                                "Name": "Locked",
+                                "Values": ["Y"]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+}
