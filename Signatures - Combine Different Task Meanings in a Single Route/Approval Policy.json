@@ -1,0 +1,46 @@
+{
+    "Approval Policy":
+    {
+        "Snippet":
+        {
+            "Use Case": "Combine multiple signature types in a single route",
+            "Example": [
+                        "A single approval route could contain both 'Review' tasks and 'Approval' tasks by configuring different meanings for each task-level in the route."
+            ],
+            "Comments": [
+                "Add a 'Meaning' element to any approval level in a route template to give the tasks in that level a special meaning other than 'Approval'.",
+                "When not explicitly configured, the default meaning is 'Approval'.",
+                "Signature meanings are constructed by combining the role name with the meaning type.  For example: 'Business' + 'Review' = 'Business Review",
+                "Content Originator is a special approval role that will never assume the meaning of its configured task level.",
+                "Tasks will retain their configured meaning even if a user re-orders the task to another level of approval while configuring an approval route.",
+                "The example below contains the following tasks:  Content Originator, Business Review, Technical Review, Quality Approval, and Validation Approval."
+            ],
+            "Minimum VERA Version": "2.13"
+        },
+        "Route Templates": [
+            {
+                "Name": "Jira Project Issue Approval",
+                "Rank": "1",
+                "Record Types": [ "Jira Issue" ],
+                "Constraints": [
+                    {
+                        "Type": "Field Is One Of",
+                        "Name": "Project Key",
+                        "Values": ["VS", "VERA"]
+                    }
+                ],
+                "Levels": [
+                    {
+                        "Name": "Level 1",
+                        "Approvers": [ "Content Originator", "Business", "Techincal"],
+                        "Meaning": "Review"
+                    },
+                    {
+                        "Name": "Level 2",
+                        "Approvers": [ "Quality", "Validation"]
+                    }
+                ]
+            }
+        ]
+    }
+}
